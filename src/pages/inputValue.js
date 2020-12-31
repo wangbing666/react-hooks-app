@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useInputValue } from '../common/inputValue';
+import { useEffect } from 'react';
+import { useInputValue } from '../hooks/useInput';
 
 function InputValue() {
   let name = useInputValue('张三');
-  let phone = useInputValue('18888888888')
+  let phone = useInputValue('18888888888');
+
 
   useEffect(() => {
     document.title = '获取表单的输入值';

@@ -1,28 +1,25 @@
-import { useEffect, useState } from 'react';
-import { useRequest } from '../common/useRequest';
+import { useEffect } from 'react';
+import { useRequest } from '../hooks/useRequest';
 
 function getNewsList() {
-  return fetch('http://v.juhe.cn/toutiao/index')
+  return fetch('https://fls-afch-stg.pingan.com.cn/af-zk-app/system-server/phoneApi/sms/version/update/1.48/android/')
 }
 
 
 function Request() {
-  const params = {
-    type: '',
-    key: '974a777a0c0629f173a0b8489b7eacc5',
-  }
-  fetch('http://v.juhe.cn/toutiao/index')
-  // const { data, loading, error } = useRequest(getNewsList, params);
-  console.log(123)
+  const { data, loading, error } = useRequest(getNewsList, {});
+  
   useEffect(() => {
     document.title = '进行网络请求';
   }, []);
 
-  return (
-    <div className="App">
-
-    </div>
-  );
+  if (error) {
+    return <div>failed to load</div>;
+  }
+  if (loading) {
+    return <div>loading...</div>;
+  }
+  return <div>Username: {JSON.stringify(data)}</div>;
 }
 
 export default Request;

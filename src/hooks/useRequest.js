@@ -5,14 +5,16 @@ export function useRequest(promise, params = {}) {
   let [data, setData] = useState({});
   let [error, setError] = useState('');
 
-  useEffect(() => {
+  const reSync = () => {
     setError('');
     setLoading(true);
-
     promise(params)
-      .then(({ payload }) => {
+      .then((response) => {
+        return response.json();
+      })
+      .then(({ data }) => {
         setLoading(false);
-        setData(payload);
+        setData(data);
       })
       .catch((err) => {
         setLoading(false);
@@ -20,7 +22,10 @@ export function useRequest(promise, params = {}) {
         // 这里可以放一个toast提示
         console.error('请求失败', err);
       });
-  }, [params]);
+  }
+  useEffect(() => {
+    reSync()
+  }, []);
 
   return { data, loading, error };
 }

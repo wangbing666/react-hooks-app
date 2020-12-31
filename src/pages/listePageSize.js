@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useWindowSize } from '../common/userWindowSize';
+import { useEffect } from 'react';
+import { useWindowSize } from '../hooks/userWindowSize';
 
 function ListePageSize() {
   const windowSize = useWindowSize();

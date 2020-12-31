@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import RouterConfig from './router';
 import reportWebVitals from './reportWebVitals';
+import { ThemeContext, lightTheme } from './theme';
 
 ReactDOM.render(
   <React.StrictMode>
-    <RouterConfig />
+    <ThemeContext.Provider value={lightTheme}>
+      <RouterConfig />
+    </ThemeContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
